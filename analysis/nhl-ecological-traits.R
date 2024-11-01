@@ -65,16 +65,16 @@ scaled_pca.df <- as.data.frame(scale(pca.df)) #standardize variables
 
 fit <- princomp(scaled_pca.df, cor=TRUE)
 
-get_eig(fit)
 summary(fit)
 
 scores = as.data.frame(fit$scores)
-scores$scientific_name = pca_data$scientific_name
-names(scores) <- c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9",
-                   "PC10", "PC11","PC12","SciName")
 
 set.seed(70524)
 fit_kmeans <- kmeans(scores, 3, nstart = 25) # the cluster number will be contained in the vector drop.fit_kmeans$cluster
+
+scores$scientific_name = pca_data$scientific_name
+names(scores) <- c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9",
+                   "PC10", "PC11","PC12","SciName")
 
 # save files needed for plotting
 eco_traits <- eco_traits %>%
@@ -84,10 +84,10 @@ markers <- cbind(scores, eco_traits$trend_NHL_ddec) %>%
   dplyr::rename(trend = `eco_traits$trend_NHL_ddec`) %>%
   mutate(direction = as.factor(ifelse(trend > 0, "positive", "negative")))
 
-write.csv(markers, "pca-markers.nhl.csv", row.names = F)
+write.csv(markers, "nhl-pca-markers.csv", row.names = F)
 
 correlations = as.data.frame(cor(scaled_pca.df, fit$scores))
-write.csv(correlations, "pca-plots.nhl.csv", row.names = T)
+write.csv(correlations, "nhl-pca-plots.csv", row.names = T)
 
 
 # Species clustering closely together -------------------------------------

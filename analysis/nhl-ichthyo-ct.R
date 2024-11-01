@@ -2,15 +2,14 @@
 
 
 # Set Up ------------------------------------------------------------------
-setwd("/Volumes/petrik-lab/kchen/cce-ichthyo")
-
 # load libraries
 library(plyr)
 library(tidyverse)
 library(lmtest)
+library(here)
 
 # load data
-ichthyo3yAvgs <- read.csv("nhl-ichthyo-3y.csv")
+ichthyo3yAvgs <- read.csv(here("nhl-ichthyo-3y.csv"))
 
 # Calculate Species' CT, CTa ----------------------------------------------
 speciesCTa <- ichthyo3yAvgs %>%
