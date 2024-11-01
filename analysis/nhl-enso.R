@@ -1,8 +1,14 @@
 # Script Header -----------------------------------------------------------
+# Topic: Newport Hydrographic Line Ichthyoplankton-ENSO Analysis
+# Author: Kathryn Chen
+# Contact: ksc005@ucsd.edu
+# Date: November 2024
 
+# Objective: This script takes a data file of Newport Hydrographic Line ichthyoplankton monthly abundances from 1996-2023, bins the data by phase of the El Niño-Southern Oscillation and by species' phenology change group, and runs statistical tests comparing group central tendency anomaly (CTa) against ENSO phase.
 
 # Set Up ------------------------------------------------------------------
-setwd("/Volumes/petrik-lab/kchen/cce-ichthyo")
+# location declaration
+here::i_am("analysis/nhl-enso.R")
 
 # load libraries
 library(plyr)
@@ -10,24 +16,24 @@ library(tidyverse)
 library(reshape2)
 library(readxl)
 library(FSA)
+library(here)
 
 # load data
-ichthyo3yAvgs <- read.csv("nhl-ichthyo-3y.csv")
-enso <- read_excel("nhl-enso.xlsx")
-
+ichthyo3yAvgs <- read.csv(here("data", "nhl-ichthyo-3y.csv"))
+ct_analysis_summary <- read.csv(here("data", "nhl-ct-summary.csv"))
+enso <- read_excel(here("data", "nhl-enso.xlsx"))
 
 # ENSO Analysis -----------------------------------------------------------
+# For each species, bin abundance data by ENSO phase and calculate CT and CTa.
 enso <- enso %>%
   melt(id.vars = "Year",
        variable.name = "Month",
        value.name = "enso") %>%
   mutate(Month = as.numeric(Month))
 
-# label ichthyo data with enso phase
 ichthyo_enso <- left_join(ichthyo3yAvgs, enso, by = c("Old_Year" = "Year",
                                                 "Old_Month" = "Month"))
 
-# calculate central tendency for each species for each ENSO phase
 ichthyo_enso_ct <- ichthyo_enso %>%
   mutate(numerator = New_Month * Density_Avg_3y,
          enso = as.factor(enso)) %>%
@@ -44,13 +50,11 @@ ichthyo_enso_ct <- ichthyo_enso %>%
         ct_anomaly_months = ct - mean_ct_months,
         ct_anomaly_days = ct_anomaly_months * 30.44)
 
-# attach phenology change groups
-ct_analysis_summary <- read.csv("nhl-ct-summary.csv")
-
 ichthyo_enso_ct$group <- ct_analysis_summary$group[match(ichthyo_enso_ct$Taxa, ct_analysis_summary$Taxa)]
 
-# statistical tests for ENSO comparisons -----------------------------------------
-# Check ANOVA assumptions: normality (Shapiro-Wilk), homoscedasticity (Bartlett's). If violated perform Kruskal-Wallis instead. Post-hoc: Tukey's HSD for ANOVA, Dunn for Kruskal-Wallis.
+
+# Statistical Comparisons -------------------------------------------------
+# For each phenology change group, test if there's a significant difference in CTa according to ENSO phase. Check ANOVA assumptions: normality (Shapiro-Wilk), homoscedasticity (Bartlett's); if violated perform Kruskal-Wallis instead. Post-hoc: Tukey's HSD for ANOVA, Dunn for Kruskal-Wallis.
 
 # earlier phenology change group
 enso_earlier_taxa <- ichthyo_enso_ct %>%
@@ -63,7 +67,7 @@ kruskal.test(ct_anomaly_days ~ enso,
 
 dunnTest(ct_anomaly_days ~ enso,
          data = enso_earlier_taxa,
-         method = "holm") # significant difference for El Nino vs La Nina
+         method = "holm") # significant difference for El Niño vs La Nina
 
 
 # no long-term linear change group
@@ -79,7 +83,7 @@ kruskal.test(ct_anomaly_days ~ enso,
 
 dunnTest(ct_anomaly_days ~ enso,
          data = enso_no_change_taxa,
-         method = "holm") # significant difference for El Nino vs Neutral
+         method = "holm") # significant difference for El Niño vs Neutral
 
 
 # later phenology change group

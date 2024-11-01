@@ -1,26 +1,32 @@
 # Script Header -----------------------------------------------------------
+# Topic: Newport Hydrographic Line Local Oceanic Variables Central Tendency Analysis
+# Author: Kathryn Chen
+# Contact: ksc005@ucsd.edu
+# Date: November 2024
 
+# Objective: This script takes (raw and 3-y averaged) data files of Newport Hydrographic Line upper ocean (100m) temperature, northern and southern copepod biomass, and positive values of the Bakun coastal upwelling index at 45˚N, 125˚W. For each variable, it calculates central tendency (CT) and central tendency anomaly (CTa) with associated standard errors and regresses CTa against time. CT and CTa are calculated three times, where month 1 is set as: January, July, and October (to match ichthyoplankton species whose CT analyses were shifted to begin in these months), and the script outputs data files for each (3 starting months x 3 variables = 9 output data files).
 
 # Set Up ------------------------------------------------------------------
-setwd("/Volumes/petrik-lab/kchen/cce-ichthyo")
+# location declaration
+here::i_am("analysis/nhl-enso.R")
 
 # load libraries
 library(plyr)
 library(tidyverse)
 library(reshape2)
+library(here)
 
 # Temperature Analysis -------------------------------------------------------
 # load data
-temp <- read.csv("nhl-temp.csv")
-temp_3y <- read.csv("nhl-temp-3y.csv")
+temp <- read.csv(here("data", "nhl-temp.csv"))
+temp_3y <- read.csv(here("data", "nhl-temp-3y.csv"))
 
-min(temp_3y$avg_t) # our min value is 8.416275˚C
-
+## CT/CTa when month 1 = January ----------------------------------------------
 # subtract the rounded minimum from all values:
 temp_3y <- temp_3y %>%
-  mutate(adjusted_t = avg_t - 8)
+  mutate(adjusted_t = avg_t - floor(min(temp_3y$avg_t)))
 
-# now we can calculate ct and cta:
+# calculate ct and cta:
 temp_ct <- temp_3y %>%
   group_by(Period_3y) %>%
   summarise(ct = (sum(Month * adjusted_t) / sum(adjusted_t))) %>%
@@ -33,7 +39,7 @@ temp_ct <- temp_3y %>%
 # ct_function <- function(temp_3y, i){
 #   x <- temp_3y[i,] %>%
 #     group_by(Period_3y, Month) %>%
-#     reframe(adjusted_t = mean(Upper100mTemp) - 8) %>%
+#     reframe(adjusted_t = avg_t - floor(min(temp_3y$avg_t))) %>%
 #     group_by(Period_3y) %>%
 #     reframe(ct = (sum(Month * adjusted_t) / sum(adjusted_t)))
 #   return(x$ct)
@@ -44,7 +50,7 @@ temp_ct <- temp_3y %>%
 #                   function(i)boot(i, ct_function, R = 1000))
 # temp_ct_boot
 
-# from the print output of the bootstrap, we get the standard errors. save these as a new vector, then we can calculate the 95% CI as ± 1.96*SE:
+# from the print output of the bootstrap, we get the standard errors:
 temp_ct_se <- c(0.1440763, 0.1230981, 0.06477802,
                0.1026722, 0.1071475, 0.1401642,
                0.09183508, 0.08943311, 0.09143974)
@@ -57,9 +63,9 @@ temp_ct <- temp_ct %>%
 # cta_function <- function(temp_3y, i){
 #   x <- temp_3y[i,] %>%
 #     group_by(Period_3y, Month) %>%
-#     reframe(avg_t = mean(Upper100mTemp) - 13) %>%
+#     reframe(adjusted_t = avg_t - floor(min(temp_3y$avg_t))) %>%
 #     group_by(Period_3y) %>%
-#     reframe(ct = (sum(Month * avg_t) / sum(avg_t)))
+#     reframe(ct = (sum(Month * adjusted_t) / sum(adjusted_t)))
 #   y <- x %>%
 #     mutate(mean_ct_months = mean(ct),
 #            ct_anomaly_months = ct - mean_ct_months,
@@ -85,35 +91,33 @@ period_years <- tibble(year = seq(from = 1997, to = 2021, by = 3),
 temp_ct$Year <- period_years$year[match(temp_ct$Period_3y,
                                         period_years$period)]
 
-write.csv(temp_ct, "nhl-temp-ct.csv", row.names = F)
+write.csv(temp_ct, here("data", "nhl-temp-ct.csv"), row.names = F)
 
-# Regression Temp CTa x Year -------------------------------------------------
+## Regression CTa x Time ----------------------------------------------------
 temp_regression <- lm(ct_anomaly_months ~ Year,
                      data = temp_ct)
 print(summary(temp_regression))
 
-# Year-Shift T For Applicable Taxa ----------------------------------------
-## shift T to start in Oct
-temp_shift_oct <- temp100 %>%
+## CT/CTa when month 1 = October or July -------------------------------------
+# shift T to start in Oct
+temp_shift_oct <- temp %>%
   mutate(New_Year =
            ifelse(Month >= 10, Year, Year - 1),
          New_Month =
            ifelse(Month >= 10, Month - 9,
                   ifelse(Month < 10, Month + 3, NA)),
-         Year_Start = "October") #assign new month and year values
+         Year_Start = "October") # assign new month and year values
 
 temp_shift_oct2 <- temp_shift_oct %>%
-  mutate(Period_3y = periods$Period_3y[match(temp_shift_oct$New_Year,
-                                             periods$Year)]) # match shifted years to periods
+  mutate(Period_3y = period_years$period[match(temp_shift_oct$New_Year,
+                                             period_years$year)]) # match shifted years to periods
 
 temp_shift_oct_3y <- temp_shift_oct2 %>%
   group_by(Period_3y, Month) %>%
-  summarise(avg_t = mean(Upper100mTemp)) #average over periods
-
-min(temp_shift_oct_3y$avg_t) #our min value is 8.51135˚C
+  summarise(avg_t = mean(Upper100mTemp)) # average over periods
 
 temp_shift_oct_3y <- temp_shift_oct_3y %>%
-  mutate(adjusted_t = avg_t - 8) #subtract rounded minimum value
+  mutate(adjusted_t = avg_t - floor(min(temp_shift_oct_3y$avg_t))) # subtract rounded minimum value
 
 temp_shift_oct_3y <- temp_shift_oct_3y %>%
   group_by(Period_3y) %>%
@@ -122,12 +126,12 @@ temp_shift_oct_3y <- temp_shift_oct_3y %>%
   mutate(mean_ct_months = mean(ct),
          sd_ct_months = sd(ct),
          ct_anomaly_months = ct - mean_ct_months,
-         ct_anomaly_days = ct_anomaly_months * 30.44) #get ct and cta
+         ct_anomaly_days = ct_anomaly_months * 30.44) # get ct and cta
 
-write.csv(temp_shift_oct_3y, "nhl-temp-oct-ct.csv", row.names = F)
+write.csv(temp_shift_oct_3y, here("data", "nhl-temp-oct-ct.csv"), row.names = F)
 
-## shift T to start in July
-temp_shift_july <- temp100 %>%
+# shift T to start in July
+temp_shift_july <- temp %>%
   mutate(New_Year =
            ifelse(Month >= 7, Year, Year - 1),
          New_Month =
@@ -136,17 +140,15 @@ temp_shift_july <- temp100 %>%
          Year_Start = "July")
 
 temp_shift_july2 <- temp_shift_july %>%
-  mutate(Period_3y = periods$Period_3y[match(temp_shift_july$New_Year,
-                                             periods$Year)]) # match shifted years to periods
+  mutate(Period_3y = period_years$period[match(temp_shift_july$New_Year,
+                                             period_years$year)]) # match shifted years to periods
 
 temp_shift_july_3y <- temp_shift_july2 %>%
   group_by(Period_3y, Month) %>%
-  summarise(avg_t = mean(Upper100mTemp)) #average over periods
-
-min(temp_shift_july_3y$avg_t) #our min value is 8.416275˚C
+  summarise(avg_t = mean(Upper100mTemp)) # average over periods
 
 temp_shift_july_3y <- temp_shift_july_3y %>%
-  mutate(adjusted_t = avg_t - 8) #subtract rounded minimum value
+  mutate(adjusted_t = avg_t - floor(min(temp_shift_july_3y$avg_t))) # subtract rounded minimum value
 
 temp_shift_july_3y <- temp_shift_july_3y %>%
   group_by(Period_3y) %>%
@@ -157,16 +159,17 @@ temp_shift_july_3y <- temp_shift_july_3y %>%
          unshift_mean_ct = mean_ct_months - 6,
          sd_ct_months = sd(ct),
          ct_anomaly_months = ct - mean_ct_months,
-         ct_anomaly_days = ct_anomaly_months * 30.44) #get ct and cta
+         ct_anomaly_days = ct_anomaly_months * 30.44) #g et ct and cta
 
-write.csv(temp_shift_july_3y, "nhl-temp-july-ct.csv", row.names = F)
+write.csv(temp_shift_july_3y, here("data", "nhl-temp-july-ct.csv"), row.names = F)
 
 
 # Copepod Analysis --------------------------------------------------------
 # load data
-cope <- read.csv("nhl-copepods.csv")
-cope_3y <- read.csv("nhl-copepods-3y.csv")
+cope <- read.csv(here("data", "nhl-copepods.csv"))
+cope_3y <- read.csv(here("data", "nhl-copepods-3y.csv"))
 
+## CT/CTa when month 1 = January ----------------------------------------------
 cope_ct <- cope_3y %>%
   group_by(Period_3y, Assemblage) %>%
   summarise(ct = (sum(Month * avg_Cope) / sum(avg_Cope))) %>%
@@ -191,6 +194,7 @@ cope_ct <- cope_3y %>%
 #                   function(i)boot(i, ct_function, R = 1000))
 # cope_ct_boot
 
+# get the standard errors:
 n_cope_ct_se <- data.frame(se = c(0.2688833, 0.1294764, 0.1607315,
                                   0.1679882, 0.176898, 0.1397594,
                                   0.2507668, 0.1343653, 0.1597159),
@@ -244,20 +248,20 @@ period_years <- tibble(year = seq(from = 1997, to = 2021, by = 3),
 cope_ct$LabelYear <- period_years$year[match(cope_ct$Period_3y,
                                                 period_years$period)]
 
-write.csv(cope_ct, "nhl-cope-ct.csv")
+write.csv(cope_ct, here("data", "nhl-cope-ct.csv"))
 
-### Regression Copepod CTa x Year -------------------------------------------------
+## Regression CTa x Time ----------------------------------------------------
 n_cope_regression <- lm(ct_anomaly_days ~ Period_3y,
                         data = cope_ct[cope_ct$Assemblage == "Northern",])
-print(summary(n_cope_regression)) # F = 0.3146, df = 7, p = 0.5924
+print(summary(n_cope_regression))
 
 s_cope_regression <- lm(ct_anomaly_days ~ Period_3y,
                         data = cope_ct[cope_ct$Assemblage == "Southern",])
-print(summary(s_cope_regression)) # F = 2.097, df = 7, p = 0.1909
+print(summary(s_cope_regression))
 
 
-# Year-Shift for applicable taxa ------------------------------------------
-## shift n/s copepods to start in Oct
+## CT/CTa when month 1 = October or July --------------------------------------
+# shift n/s copepods to start in Oct
 ns_cope2 <- cope %>%
   dplyr::select(Year, Month, SouthernLog10Biomass..mg.m3., NorthernLog10Biomass..mg.m3.) %>%
   dplyr::rename(Southern = SouthernLog10Biomass..mg.m3.,
@@ -272,15 +276,15 @@ ns_cope_shift_oct <- ns_cope2 %>%
          New_Month =
            ifelse(Month >= 10, Month - 9,
                   ifelse(Month < 10, Month + 3, NA)),
-         Year_Start = "October") #assign new month and year values
+         Year_Start = "October") # assign new month and year values
 
 ns_cope_shift_oct2 <- ns_cope_shift_oct %>%
-  mutate(Period_3y = periods$Period_3y[match(ns_cope_shift_oct$New_Year,
-                                             periods$Year)]) # match shifted years to periods
+  mutate(Period_3y = period_years$period[match(ns_cope_shift_oct$New_Year,
+                                             period_years$year)]) # match shifted years to periods
 
 ns_cope_shift_oct_3y <- ns_cope_shift_oct2 %>%
   group_by(Period_3y, Assemblage, Month) %>%
-  summarise(avg_Cope = mean(Log10Biomass)) #average over periods
+  summarise(avg_Cope = mean(Log10Biomass)) # average over periods
 
 ns_cope_shift_oct_3y <- ns_cope_shift_oct_3y %>%
   group_by(Period_3y, Assemblage) %>%
@@ -291,11 +295,11 @@ ns_cope_shift_oct_3y <- ns_cope_shift_oct_3y %>%
   mutate(mean_ct_months = mean(ct),
          sd_ct_months = sd(ct),
          ct_anomaly_months = ct - mean_ct_months,
-         ct_anomaly_days = ct_anomaly_months * 30.44) #get ct and cta
+         ct_anomaly_days = ct_anomaly_months * 30.44) # get ct and cta
 
-write.csv(ns_cope_shift_oct_3y, "nhl-cope-oct-ct.csv", row.names = F)
+write.csv(ns_cope_shift_oct_3y, here("data", "nhl-cope-oct-ct.csv"), row.names = F)
 
-## shift n/s cope to start in July
+# shift n/s cope to start in July
 ns_cope_shift_july <- ns_cope2 %>%
   mutate(New_Year =
            ifelse(Month >= 7, Year, Year - 1),
@@ -305,12 +309,12 @@ ns_cope_shift_july <- ns_cope2 %>%
          Year_Start = "July")
 
 ns_cope_shift_july2 <- ns_cope_shift_july %>%
-  mutate(Period_3y = periods$Period_3y[match(ns_cope_shift_july$New_Year,
-                                             periods$Year)]) # match shifted years to periods
+  mutate(Period_3y = period_years$period[match(ns_cope_shift_july$New_Year,
+                                             period_years$year)]) # match shifted years to periods
 
 ns_cope_shift_july_3y <- ns_cope_shift_july2 %>%
   group_by(Period_3y, Assemblage, Month) %>%
-  summarise(avg_Cope = mean(Log10Biomass)) #average over periods
+  summarise(avg_Cope = mean(Log10Biomass)) # average over periods
 
 ns_cope_shift_july_3y <- ns_cope_shift_july_3y %>%
   group_by(Period_3y, Assemblage) %>%
@@ -321,15 +325,16 @@ ns_cope_shift_july_3y <- ns_cope_shift_july_3y %>%
   mutate(mean_ct_months = mean(ct),
          sd_ct_months = sd(ct),
          ct_anomaly_months = ct - mean_ct_months,
-         ct_anomaly_days = ct_anomaly_months * 30.44) #get ct and cta
+         ct_anomaly_days = ct_anomaly_months * 30.44) # get ct and cta
 
-write.csv(ns_cope_shift_july_3y, "nhl-cope-july-ct.csv", row.names = F)
+write.csv(ns_cope_shift_july_3y, here("data", "nhl-cope-july-ct.csv"), row.names = F)
 
 
 # BCUI Analysis -----------------------------------------------------------
-bcui <- read.csv("nhl-bcui.csv")
-bcui_3y <- read.csv("nhl-bcui-3y.csv")
+bcui <- read.csv(here("data", "nhl-bcui.csv"))
+bcui_3y <- read.csv(here("data", "nhl-bcui-3y.csv"))
 
+## CT/CTa when month 1 = January ----------------------------------------------
 onlypos_bcui_ct <- bcui_3y %>%
   group_by(Period_3y) %>%
   summarise(ct = (sum(MONTH * Avg_BCUI) / sum(Avg_BCUI))) %>%
@@ -349,7 +354,7 @@ onlypos_bcui_ct <- bcui_3y %>%
 #                   function(i)boot(i, ct_function, R = 1000))
 # onlypos_bcui_ct_boot
 
-# from the print output of the bootstrap, we get the standard errors. save these as a new vector, then we can calculate the 95% CI as ± 1.96*SE:
+# from the print output of the bootstrap, we get the standard errors:
 onlypos_bcui_ct_se <- c(0.2022297, 0.1805425, 0.1925684,
                         0.2557991, 0.180777, 0.2128862,
                         0.1810176, 0.2340665, 0.2151879)
@@ -387,27 +392,26 @@ period_years <- tibble(year = seq(from = 1997, to = 2021, by = 3),
 onlypos_bcui_ct$Year <- period_years$year[match(onlypos_bcui_ct$Period_3y,
                                                 period_years$period)]
 
-write.csv(onlypos_bcui_ct, "nhl-bcui-ct.csv")
+write.csv(onlypos_bcui_ct, here("data", "nhl-bcui-ct.csv"))
 
-# regression
+## Regression CTa x Time ---------------------------------------------------
 onlypos_bcui_regression <- lm(ct_anomaly_days ~ Period_3y,
                               data = onlypos_bcui_ct)
 print(summary(onlypos_bcui_regression))
 
-
-# Year-shift BCUI ---------------------------------------------------------
-## shift pos-only BCUI to start in October
+## CT/CTa when month 1 = October or July ------------------------------------
+# shift BCUI to start in October
 onlypos_bcui_shift_oct <- bcui %>%
   mutate(New_Year =
            ifelse(MONTH >= 10, YEAR, YEAR - 1),
          New_Month =
            ifelse(MONTH >= 10, MONTH - 9,
                   ifelse(MONTH < 10, MONTH + 3, NA)),
-         Year_Start = "October") #assign new month and year values
+         Year_Start = "October") # assign new month and year values
 
 onlypos_bcui_shift_oct_3y <- onlypos_bcui_shift_oct %>%
-  mutate(Period_3y = periods$Period_3y[match(onlypos_bcui_shift_oct$New_Year,
-                                             periods$Year)]) # attach the periods to the years
+  mutate(Period_3y = period_years$period[match(onlypos_bcui_shift_oct$New_Year,
+                                             period_years$year)]) # attach the periods to the years
 
 onlypos_bcui_shift_oct_3y <- onlypos_bcui_shift_oct_3y %>%
   group_by(Period_3y, MONTH) %>%
@@ -420,10 +424,10 @@ onlypos_bcui_shift_oct_3y <- onlypos_bcui_shift_oct_3y %>%
   mutate(ct_anomaly_months = ct - mean(ct),
          ct_anomaly_days = ct_anomaly_months * 30.44) # get ct and cta
 
-write.csv(onlypos_bcui_shift_oct_3y, "nhl-bcui-oct-ct.csv",
+write.csv(onlypos_bcui_shift_oct_3y, here("data", "nhl-bcui-oct-ct.csv"),
           row.names = F)
 
-## shift pos-only BCUI to start in July
+# shift BCUI to start in July
 onlypos_bcui_shift_july <- bcui %>%
   mutate(New_Year =
            ifelse(MONTH >= 7, YEAR, YEAR - 1),
@@ -433,8 +437,8 @@ onlypos_bcui_shift_july <- bcui %>%
          Year_Start = "July") #assign new month and year values
 
 onlypos_bcui_shift_july_3y <- onlypos_bcui_shift_july %>%
-  mutate(Period_3y = periods$Period_3y[match(onlypos_bcui_shift_july$New_Year,
-                                             periods$Year)]) # attach the periods to the years
+  mutate(Period_3y = period_years$period[match(onlypos_bcui_shift_july$New_Year,
+                                             period_years$year)]) # attach the periods to the years
 
 onlypos_bcui_shift_july_3y <- onlypos_bcui_shift_july_3y %>%
   group_by(Period_3y, MONTH) %>%
@@ -447,5 +451,5 @@ onlypos_bcui_shift_july_3y <- onlypos_bcui_shift_july_3y %>%
   mutate(ct_anomaly_months = ct - mean(ct),
          ct_anomaly_days = ct_anomaly_months * 30.44) # get ct and cta
 
-write.csv(onlypos_bcui_shift_july_3y, "nhl-bcui-july-ct.csv",
+write.csv(onlypos_bcui_shift_july_3y, here("data", "nhl-bcui-july-ct.csv"),
           row.names = F)

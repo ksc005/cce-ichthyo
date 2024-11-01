@@ -1,4 +1,4 @@
-"Taxa","Period_3y","ct","mean_ct_months","sd_ct_months","ct_anomaly_months","ct_anomaly_days","cor","group","trend_ddec"
+"Taxa","Period_3y","ct","mean_ct_months","sd_ct_months","ct_anomaly_months","ct_anomaly_days","cor","group","trend_d3y"
 "Anoplarchus.purpurescens",1,3,3.04706062813563,0.44886678649445,-0.0470606281356316,-1.43252552044863,0.0676087104625787,"no_change",0.337313824124671
 "Anoplarchus.purpurescens",2,2.52533458676092,3.04706062813563,0.44886678649445,-0.521726041374708,-15.8813406994461,0.0676087104625787,"no_change",0.337313824124671
 "Anoplarchus.purpurescens",3,4,3.04706062813563,0.44886678649445,0.952939371864368,29.0074744795514,0.0676087104625787,"no_change",0.337313824124671
