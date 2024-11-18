@@ -1,8 +1,7 @@
-# cce-ichthyo
+# Changes in ichthyoplankton phenology over time across the California Current ecosystem
+#### Kathryn S. Chen, Colleen M. Petrik, Rebecca G. Asch, Andrew R. Thompson, Toby D. Auth
 [![DOI](https://zenodo.org/badge/876960891.svg)](https://doi.org/10.5281/zenodo.13979384)
 
-## Changes in ichthyoplankton phenology over time across the California Current ecosystem
-#### Kathryn S. Chen, Colleen M. Petrik, Rebecca G. Asch, Andrew R. Thompson, Toby D. Auth
 
 ### Data Sources and Management
 **CalCOFI data**:
