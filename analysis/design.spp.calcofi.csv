@@ -1,0 +1,58 @@
+"","order","adult_habitat","distribution","biogeographic_affinity","fishing_status","r","trend_in_phenology"
+"1","Argentiniformes","Demersal","Coastal","Wide distribution","Unfished",-0.67676084,-0.98567145
+"2","Stomiiformes","Mesopelagic","Oceanic","Cool-water","Unfished",0.54587677,0.66284403
+"3","Stomiiformes","Mesopelagic","Oceanic","Wide distribution","Unfished",-0.5556051,-0.89127689
+"4","Argentiniformes","Mesopelagic","Oceanic","Cool-water","Unfished",0.60550941,0.43743708
+"5","Argentiniformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.73093897,-0.95297987
+"6",NA,"Demersal","Coastal","Cool-water","Unfished",-0.53562539,-0.75819121
+"7","Myctophiformes","Mesopelagic","Oceanic","Wide distribution","Unfished",-0.53757933,-0.32532267
+"8","Stomiiformes","Mesopelagic","Oceanic","Cool-water","Unfished",0.07163385,0.06256906
+"9",NA,"Demersal","Coastal","Warm-water","Unfished",0.46361963,0.51013938
+"10",NA,"Epipelagic","Coastal-Oceanic","Wide distribution","Unfished",0.19734723,0.19864233
+"11","Myctophiformes","Mesopelagic","Oceanic","Warm-water","Unfished",-0.40722101,-0.59740516
+"12","Myctophiformes","Mesopelagic","Oceanic","Wide distribution","Unfished",-0.14424324,-0.24667954
+"13",NA,"Epipelagic","Coastal-Oceanic","Wide distribution","Fished",0.20854751,0.18994069
+"14",NA,"Demersal","Coastal","Cool-water","Unfished",0.53965289,0.86547217
+"15","Pleuronectiformes","Demersal","Coastal","Cool-water","Fished",0.07986137,0.05544022
+"16","Pleuronectiformes","Demersal","Coastal","Cool-water","Unfished",0.10400724,0.21941527
+"17",NA,"Demersal","Coastal","Warm-water","Unfished",-0.46051492,-0.43122333
+"18","Scombriformes","Epipelagic","Coastal-Oceanic","Wide distribution","Unfished",-0.9404229,-1.14049992
+"19","Stomiiformes","Mesopelagic","Oceanic","Wide distribution","Unfished",0.30820887,0.28763644
+"20","Myctophiformes","Mesopelagic","Oceanic","Wide distribution","Unfished",0.01440951,0.01658938
+"21","Argentiniformes","Mesopelagic","Coastal-Oceanic","Wide distribution","Unfished",-0.41397034,-0.38544124
+"22","Argentiniformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.37636048,-0.37193473
+"23","Pleuronectiformes","Demersal","Coastal","Cool-water","Unfished",0.07341574,0.0530875
+"24",NA,"Demersal","Coastal","Warm-water","Fished",-0.35544589,-0.59739554
+"25",NA,"Epipelagic","Coastal-Oceanic","Wide distribution","Fished",-0.57121864,-0.61972647
+"26","Pleuronectiformes","Demersal","Coastal","Cool-water","Fished",-0.36883271,-0.21158851
+"27","Argentiniformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.85172703,-0.28539278
+"28","Myctophiformes","Mesopelagic","Oceanic","Wide distribution","Unfished",-0.6783063,-1.30379846
+"29","Myctophiformes","Mesopelagic","Oceanic","Wide distribution","Unfished",0.03658465,0.03787822
+"30",NA,"Demersal","Coastal","Cool-water","Unfished",-0.27574012,-0.35783444
+"31","Pleuronectiformes","Demersal","Coastal","Warm-water","Fished",0.85898874,0.78974651
+"32","Pleuronectiformes","Demersal","Coastal","Cool-water","Fished",-0.11885532,-0.12507742
+"33","Scombriformes","Demersal","Coastal","Cool-water","Fished",0.43052432,0.47271603
+"34","Pleuronectiformes","Demersal","Coastal","Cool-water","Unfished",-0.20701305,-0.21343674
+"35","Pleuronectiformes","Demersal","Coastal","Cool-water","Unfished",-0.32378915,-0.8346951
+"36","Pleuronectiformes","Demersal","Coastal","Warm-water","Unfished",0.83709572,0.57691704
+"37","Myctophiformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.17096027,-0.12099672
+"38","Argentiniformes","Mesopelagic","Oceanic","Wide distribution","Unfished",0.29921484,0.67907058
+"39",NA,"Epipelagic","Coastal-Oceanic","Warm-water","Fished",-0.15384906,-0.23767427
+"40","Scombriformes","Epipelagic","Coastal-Oceanic","Warm-water","Fished",-0.65866783,-0.60299664
+"41",NA,"Demersal","Coastal","Cool-water","Fished",-0.50042877,-0.61814652
+"42","Perciformes/Scorpaenoidei","Demersal","Coastal","Cool-water","Fished",-0.71743865,-0.66067649
+"43","Perciformes/Scorpaenoidei","Demersal","Coastal","Cool-water","Fished",0.14646926,0.10566887
+"44","Perciformes/Scorpaenoidei","Demersal","Coastal","Cool-water","Fished",-0.20300482,-0.26976836
+"45","Perciformes/Scorpaenoidei","Demersal","Coastal","Cool-water","Fished",-0.60856176,-0.61091398
+"46","Perciformes/Scorpaenoidei","Demersal","Coastal","Cool-water","Fished",-0.33096824,-0.45231129
+"47","Perciformes/Scorpaenoidei","Demersal","Coastal","Cool-water","Fished",-0.48739925,-0.32191835
+"48",NA,"Epipelagic","Coastal","Warm-water","Fished",0.71299666,0.44140474
+"49","Myctophiformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.39888132,-0.25977088
+"50","Stomiiformes","Mesopelagic","Oceanic","Warm-water","Unfished",-0.65332382,-0.49183639
+"51","Myctophiformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.3635882,-0.23722736
+"52","Pleuronectiformes","Demersal","Coastal","Warm-water","Unfished",-0.47671972,-0.44613285
+"53","Stomiiformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.58783106,-0.64564911
+"54","Myctophiformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.54550298,-0.40183969
+"55","Scombriformes","Epipelagic","Coastal-Oceanic","Cool-water","Unfished",0.74958544,1.06656879
+"56",NA,"Epipelagic","Coastal-Oceanic","Wide distribution","Fished",0.06920311,0.03783476
+"57","Myctophiformes","Mesopelagic","Oceanic","Warm-water","Unfished",-0.3854796,-0.28373794

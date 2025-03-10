@@ -1,0 +1,26 @@
+"","order","adult_habitat","distribution","biogeographic_affinity","fishing_status","cor_NHL","trend_NHL_d3y"
+"1",NA,"Demersal","Coastal","Cool-water","Unfished",0.23442922,0.46687151
+"2","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Unfished",-0.88560234,-5.92046275
+"3","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Unfished",0.04901844,0.203315
+"4",NA,"Epipelagic","Coastal-Oceanic","Wide distribution","Fished",0.0634964,0.21619443
+"5","Pleuronectiformes","Demersal","Coastal","Cool-water","Fished",0.01118838,0.02304991
+"6","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Unfished",-0.35949135,-1.28502945666667
+"7","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Unfished",-0.11074445,-0.126914213333333
+"8","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Fished",-0.13019277,-0.33229873
+"9","Pleuronectiformes","Demersal","Coastal","Cool-water","Fished",-0.45011899,-2.07399015333333
+"10","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Unfished",0.67719109,2.36254492
+"11","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Unfished",0.17349713,0.920006656666667
+"12",NA,"Mesopelagic","Oceanic","Cool-water","Unfished",-0.22590406,-0.680597956666667
+"13","Pleuronectiformes","Demersal","Coastal","Cool-water","Unfished",-0.38727625,-2.86095059333333
+"14",NA,"Demersal","Coastal","Cool-water","Unfished",0.24927919,0.519178993333333
+"15","Pleuronectiformes","Demersal","Coastal","Cool-water","Fished",-0.63000011,-3.08520913333333
+"16","Myctophiformes","Mesopelagic","Oceanic","Wide distribution","Unfished",0.27864248,1.06429515333333
+"17","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Fished",0.14573931,0.163196343333333
+"18","Pleuronectiformes","Demersal","Coastal","Cool-water","Fished",0.28843238,0.34610836
+"19","Pleuronectiformes","Demersal","Coastal","Cool-water","Fished",-0.06113066,-0.135454193333333
+"20","Pleuronectiformes","Demersal","Coastal","Cool-water","Fished",0.10106477,0.35470439
+"21",NA,"Demersal","Coastal","Cool-water","Unfished",-0.18442388,-0.409605243333333
+"22","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Unfished",-0.11643399,-0.686191833333333
+"23","Perciformes/Cottoidei","Demersal","Coastal","Cool-water","Fished",-0.22339967,-1.07342205333333
+"24","Myctophiformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.04777749,-0.1469771
+"25","Myctophiformes","Mesopelagic","Oceanic","Cool-water","Unfished",-0.06860779,-0.265816246666667

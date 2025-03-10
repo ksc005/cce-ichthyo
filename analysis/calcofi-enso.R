@@ -177,3 +177,12 @@ bartlett.test(ct_anomaly_days ~ enso, data = enso_later_taxa) # p = 0.07913, vio
 
 kruskal.test(ct_anomaly_days ~ enso,
              data = enso_later_taxa) # p = 0.7703, no significant difference
+
+# Data for Figures ------------------------------------------------------------
+## pull out the data needed to produce these figures
+climate.calcofi <- ichthyo_enso_ct %>%
+  mutate(mode = "enso") %>%
+  rename(phase = enso)
+
+write.csv(climate.calcofi,
+          here("data", "climate.calcofi.csv"))

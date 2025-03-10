@@ -16,6 +16,7 @@ library(tidyverse)
 library(reshape2)
 library(readxl)
 library(fastDummies)
+library(here)
 
 # load data
 eco_traits <- read.csv(here("data", "calcofi-eco-traits.csv"),
@@ -109,8 +110,7 @@ names(drop.scores) <- c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9",
 
 # Species Clustering Closely Together ---------------------------------------
 # Group the species clustering closely together and regress their CTa against time.
-spp_cta <- read.csv(here("data", "CalCOFI_spp_cta_by_year.csv"),
-                    stringsAsFactors = TRUE)
+spp_cta <- analysis_summary
 
 kept_for_analysis <- unique(as.character(eco_traits$scientific_name))
 
@@ -121,7 +121,7 @@ spp_cta <- spp_cta %>%
 spp_cta$ID <- as.numeric(as.factor(spp_cta$scientific_name))
 
 spp_cta <- spp_cta %>%
-  mutate(New_Decade = as.numeric(as.factor(New_Decade),
+  mutate(Decade = as.numeric(as.factor(Decade),
                                  levels = c(1955, 1965, 1975, 1985,
                                             1995, 2005, 2015)))
 
@@ -138,8 +138,8 @@ drop.cluster1.table <- spp_cta %>%
   filter(drop.cluster == 1)
 drop.cluster1.group <- drop.cluster1.table %>%
   group_by(scientific_name) %>%
-  count(group.3)
-table(drop.cluster1.group$group.3) # 3 spp shifting earlier, 2 later, 4 no change
+  count(group)
+table(drop.cluster1.group$group) # 3 spp shifting earlier, 2 later, 4 no change
 
 drop.cluster1_scores <- drop.scores %>%
   dplyr::select(PC1, PC2, SciName) %>%
@@ -148,10 +148,10 @@ drop.cluster1_scores <- drop.scores %>%
 drop.cluster1_ct <- spp_cta %>%
   filter(scientific_name %in% drop.cluster1)
 
-drop.cluster1_regression <- lm(ct_anomaly_days ~ New_Decade,
+drop.cluster1_regression <- lm(ct_anomaly_days ~ Decade,
                                data = drop.cluster1_ct)
 print(summary(drop.cluster1_regression))
-#y = 3.538 - 0.881x, F = 0.4168, df = 60, p = 0.521
+#y = 3.3339 - 0.8301x, F = 0.3616, df = 60, p = 0.5499
 
 drop.set1 <- eco_traits %>%
   filter(scientific_name %in% drop.cluster1)
@@ -164,8 +164,8 @@ drop.cluster2.table <- spp_cta %>%
   filter(drop.cluster == 2)
 drop.cluster2.group <- drop.cluster2.table %>%
   group_by(scientific_name) %>%
-  count(group.3)
-table(drop.cluster2.group$group.3) # 10 spp shifting earlier, 5 later, 10 no change
+  count(group)
+table(drop.cluster2.group$group) # 10 spp shifting earlier, 5 later, 10 no change
 
 drop.cluster2_scores <- drop.scores %>%
   select(PC1, PC2, SciName) %>%
@@ -174,7 +174,7 @@ drop.cluster2_scores <- drop.scores %>%
 drop.cluster2_ct <- spp_cta %>%
   filter(scientific_name %in% drop.cluster2)
 
-drop.cluster2_regression <- lm(ct_anomaly_days ~ as.numeric(as.factor(New_Decade)),
+drop.cluster2_regression <- lm(ct_anomaly_days ~ as.numeric(as.factor(Decade)),
                                data = drop.cluster2_ct)
 print(summary(drop.cluster2_regression))
 #y = 6.904 - 1.695x, F = 3.979, df = 164, p = 0.04774
@@ -190,8 +190,8 @@ drop.cluster3.table <- spp_cta %>%
   filter(drop.cluster == 3)
 drop.cluster3.group <- drop.cluster3.table %>%
   group_by(scientific_name) %>%
-  count(group.3)
-table(drop.cluster3.group$group.3) # 14 spp shifting earlier, 2 shifting later, 7 no change
+  count(group)
+table(drop.cluster3.group$group) # 14 spp shifting earlier, 2 shifting later, 7 no change
 
 drop.cluster3_scores <- drop.scores %>%
   select(PC1, PC2, SciName) %>%
@@ -200,10 +200,10 @@ drop.cluster3_scores <- drop.scores %>%
 drop.cluster3_ct <- spp_cta %>%
   filter(scientific_name %in% drop.cluster3)
 
-drop.cluster3_regression <- lm(ct_anomaly_days ~ as.numeric(as.factor(New_Decade)),
+drop.cluster3_regression <- lm(ct_anomaly_days ~ as.numeric(as.factor(Decade)),
                                data = drop.cluster3_ct)
 print(summary(drop.cluster3_regression))
-#y = 10.2993 - 2.5052x, F = 9.408, df = 151, p = 0.002561
+#y = 10.1094 - 2.4590x, F = 9.394, df = 151, p = 0.002579
 
 # look at what species are in this group
 drop.set3 <- eco_traits %>%
@@ -212,39 +212,60 @@ drop.set3 <- eco_traits %>%
 # save a csv of cluster, decade, mean cta (days), se cta (days)
 drop.cluster1.n <- length(unique(drop.cluster1.table$scientific_name))
 drop.cluster1_cta <- drop.cluster1.table %>%
-  ddply(.(New_Decade), summarise,
+  ddply(.(Decade), summarise,
         mean_cta_days = mean(ct_anomaly_days),
         sd_cta_months = sd(ct_anomaly_months),
         se_cta_months = sd_cta_months/sqrt(drop.cluster1.n),
         se_cta_days = se_cta_months * 30.44) %>%
-  arrange(New_Decade) %>%
+  arrange(Decade) %>%
   mutate(cluster = "Epipelagic") %>%
-  select(cluster, New_Decade, mean_cta_days, se_cta_days) %>%
+  select(cluster, Decade, mean_cta_days, se_cta_days) %>%
   distinct()
 
 drop.cluster2.n <- length(unique(drop.cluster2.table$scientific_name))
 drop.cluster2_cta <- drop.cluster2.table %>%
-  ddply(.(New_Decade), summarise,
+  ddply(.(Decade), summarise,
         mean_cta_days = mean(ct_anomaly_days),
         sd_cta_months = sd(ct_anomaly_months),
         se_cta_months = sd_cta_months/sqrt(drop.cluster2.n),
         se_cta_days = se_cta_months * 30.44) %>%
-  arrange(New_Decade) %>%
+  arrange(Decade) %>%
   mutate(cluster = "Demersal") %>%
-  select(cluster, New_Decade, mean_cta_days, se_cta_days) %>%
+  select(cluster, Decade, mean_cta_days, se_cta_days) %>%
   distinct()
 
 drop.cluster3.n <- length(unique(drop.cluster3.table$scientific_name))
 drop.cluster3_cta <- drop.cluster3.table %>%
-  ddply(.(New_Decade), summarise,
+  ddply(.(Decade), summarise,
         mean_cta_days = mean(ct_anomaly_days),
         sd_cta_months = sd(ct_anomaly_months),
         se_cta_months = sd_cta_months/sqrt(drop.cluster3.n),
         se_cta_days = se_cta_months * 30.44) %>%
-  arrange(New_Decade) %>%
+  arrange(Decade) %>%
   mutate(cluster = "Mesopelagic") %>%
-  select(cluster, New_Decade, mean_cta_days, se_cta_days) %>%
+  select(cluster, Decade, mean_cta_days, se_cta_days) %>%
   distinct()
 
 cluster.plots <- rbind(drop.cluster1_cta, drop.cluster2_cta, drop.cluster3_cta)
 write.csv(cluster.plots, here("data", "calcofi-cluster-plots.csv"), row.names = F)
+
+# More Data for Figures ------------------------------------------------------
+summary(eco_traits)
+new.design <- eco_traits %>%
+  select(order, adult_habitat, distribution, biogeographic_affinity,
+         fishing_status, r, trend_in_phenology)
+summary(new.design)
+
+# get trend in d/y
+new.design$trend_in_phenology <- new.design$trend_in_phenology / 10
+
+# 3 minimum species per category, so we are dropping Misc
+
+new.design.min3 <- new.design %>%
+  mutate(order = as.character(order),
+         order = ifelse(order == "Misc",
+                        NA,
+                        order),
+         order = as.factor(order))
+
+write.csv(new.design.min3, "design.spp.calcofi.csv")

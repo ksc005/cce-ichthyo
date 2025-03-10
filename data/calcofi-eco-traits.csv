@@ -1,58 +1,58 @@
-﻿scientific_name,order,month_maximum,adult_habitat,cross_shore_distribution,biogeographic_affinity,adult_trophic_level,fishing_status,r,trend_in_phenology,mean_ct,sd_ct
-Argentina sialis,Argentiniformes,January,Demersal,Coastal,Wide distribution,3.1,Unfished,-0.66868654,-10.1942071,1.1874229,1.0819062
-Aristostomias scintillans,Stomiiformes,April,Mesopelagic,Oceanic,Cool-water,3.5,Unfished,0.55829173,7.7094331,1.8077371,0.8726045
-Bathophilus flemingi,Stomiiformes,July,Mesopelagic,Oceanic,Wide distribution,3.5,Unfished,-0.5556051,-6.9203733,5.2843905,0.9479184
-Bathylagoides wesethi,Argentiniformes,July,Mesopelagic,Oceanic,Cool-water,3.2,Unfished,0.60550941,4.3743708,6.6298918,0.5126883
-Bathylagus pacificus,Argentiniformes,January,Mesopelagic,Oceanic,Cool-water,3.27,Unfished,-0.73259502,-9.5873664,2.6967994,0.9287399
-Brosmophycis marginata,Ophidiiformes,April,Demersal,Coastal,Cool-water,,Unfished,-0.53562539,-7.5819121,5.0692838,1.004561
-Ceratoscopelus townsendi,Myctophiformes,July,Mesopelagic,Oceanic,Wide distribution,3.5,Unfished,-0.53757933,-3.2532267,6.7229513,0.4294677
-Chauliodus macouni,Stomiiformes,April,Mesopelagic,Oceanic,Cool-water,4.09,Unfished,0.07163385,0.6256906,5.5407434,0.6198693
-Chromis punctipinnis,Ovalentaria/misc,July,Demersal,Coastal,Warm-water,2.73,Unfished,0.46361963,4.7090637,7.7068947,0.7730016
-Cololabis saira,Beloniformes,April,Epipelagic,Coastal-Oceanic,Wide distribution,3.71,Unfished,0.19734723,1.9864233,5.8492185,0.714331
-Diogenichthys atlanticus,Myctophiformes,January,Mesopelagic,Oceanic,Warm-water,3.11,Unfished,-0.41212893,-6.3103395,0.7927773,1.0866217
-Electrona risso,Myctophiformes,April,Mesopelagic,Oceanic,Wide distribution,3.4,Unfished,-0.12777906,-2.2137521,1.2187728,1.064777
-Engraulis mordax,Clupeiformes,April,Epipelagic,Coastal-Oceanic,Wide distribution,3.1,Fished,0.20854751,1.8994069,3.8847886,0.6463559
-Girella nigricans,Centrarchiformes,July,Demersal,Coastal,Cool-water,2,Unfished,0.53965289,6.4142493,6.0726861,0.9045634
-Glyptocephalus zachirus,Pleuronectiformes,July,Demersal,Coastal,Cool-water,3.41,Fished,0.07986137,0.5544022,5.6104607,0.4926595
-Hippoglossina stomata,Pleuronectiformes,October,Demersal,Coastal,Cool-water,,Unfished,0.09916314,1.3449912,10.597518,0.857088
-Hypsypops rubicundus,Ovalentaria/misc,July,Demersal,Coastal,Warm-water,3.16,Unfished,-0.46051492,-3.8670456,7.2655109,0.7140495
-Icichthys lockingtoni,Scombriformes,April,Epipelagic,Coastal-Oceanic,Wide distribution,3.71,Unfished,-0.9404229,-11.4049992,4.4092555,0.8606584
-Idiacanthus antrostomus,Stomiiformes,July,Mesopelagic,Oceanic,Wide distribution,3.83,Unfished,0.30820887,2.8763644,7.8373168,0.6623042
-Lampadena urophaos,Myctophiformes,July,Mesopelagic,Oceanic,Wide distribution,,Unfished,0.01440951,0.1658938,7.8358835,0.817033
-Leuroglossus stilbius,Argentiniformes,April,Mesopelagic,Coastal-Oceanic,Wide distribution,3.26,Unfished,-0.42663546,-4.0212155,2.3981604,0.6688968
-Lipolagus ochotensis,Argentiniformes,January,Mesopelagic,Oceanic,Cool-water,3.4,Unfished,-0.3816453,-3.8452315,2.3957948,0.7150252
-Lyopsetta exilis,Pleuronectiformes,April,Demersal,Coastal,Cool-water,3.5,Unfished,0.07341574,0.530875,3.7363707,0.5131707
-Medialuna californiensis,Centrarchiformes,July,Demersal,Coastal,Warm-water,2.67,Fished,-0.35544589,-5.9739554,6.4113668,1.0329465
-Merluccius productus,Gadiformes,February,Epipelagic,Coastal-Oceanic,Wide distribution,3.98,Fished,-0.57205334,-6.2089528,2.080075,0.7702657
-Microstomus pacificus,Pleuronectiformes,April,Demersal,Coastal,Cool-water,3.34,Fished,-0.36883271,-2.1158851,5.352953,0.407119
-Nansenia candida,Argentiniformes,April,Mesopelagic,Oceanic,Cool-water,,Unfished,-0.85172703,-2.8539278,4.5892551,0.2377942
-Notolychnus valdiviae,Myctophiformes,April,Mesopelagic,Oceanic,Wide distribution,3.07,Unfished,-0.6783063,-10.0688381,5.7767257,0.9380149
-Notoscopelus resplendens,Myctophiformes,July,Mesopelagic,Oceanic,Wide distribution,3,Unfished,0.03658465,0.3787822,5.7950085,0.7347665
-Oxylebius pictus,Perciformes/Cottoidei,April,Demersal,Coastal,Cool-water,3.42,Unfished,-0.26912762,-3.5747158,2.3135485,0.9426316
-Paralichthys californicus,Pleuronectiformes,April,Demersal,Coastal,Warm-water,4.5,Fished,0.85898874,7.8974651,4.5071126,0.6524677
-Parophrys vetulus,Pleuronectiformes,April,Demersal,Coastal,Cool-water,3.39,Fished,-0.11885532,-1.2507742,3.0826134,0.7468253
-Peprilus simillimus,Scombriformes,July,Demersal,Coastal,Cool-water,,Fished,0.43052432,4.7271603,6.4767267,0.7792223
-Pleuronichthys coenosus,Pleuronectiformes,April,Demersal,Coastal,Cool-water,3.16,Unfished,-0.20701305,-2.1343674,5.8363877,0.7316952
-Pleuronichthys decurrens,Pleuronectiformes,January,Demersal,Coastal,Cool-water,3.85,Unfished,-0.31636243,-5.501597,1.6807537,1.3234622
-Pleuronichthys verticalis,Pleuronectiformes,July,Demersal,Coastal,Warm-water,3.1,Unfished,0.83709572,5.7691704,5.449367,0.4890992
-Protomyctophum crockeri,Myctophiformes,January,Mesopelagic,Oceanic,Cool-water,3.2,Unfished,-0.21466833,-1.7412621,0.7674522,0.5756452
-Pseudobathylagus milleri,Argentiniformes,January,Mesopelagic,Oceanic,Wide distribution,3.21,Unfished,0.28102802,6.4722438,1.8288786,1.1962738
-Sardinops sagax,Clupeiformes,April,Epipelagic,Coastal-Oceanic,Warm-water,2.61,Fished,-0.15384906,-2.3767427,4.4902649,1.096342
-Scomber japonicus,Scombriformes,July,Epipelagic,Coastal-Oceanic,Warm-water,3.42,Fished,-0.65866783,-6.0299664,6.3275073,0.6496915
-Scorpaenichthys marmoratus,Perciformes/Cottoidei,January,Demersal,Coastal,Cool-water,3.62,Fished,-0.52849019,-6.3055552,1.4282915,0.8467304
-Sebastes aurora,Perciformes/Scorpaenoidei,April,Demersal,Coastal,Cool-water,3.3,Fished,-0.71743865,-6.6067649,3.7987121,0.6535259
-Sebastes diploproa,Perciformes/Scorpaenoidei,July,Demersal,Coastal,Cool-water,3.3,Fished,0.14646926,1.0566887,6.7878092,0.5119875
-Sebastes goodei,Perciformes/Scorpaenoidei,January,Demersal,Coastal,Cool-water,3.46,Fished,-0.20718103,-2.7614284,1.696672,0.9458942
-Sebastes jordani,Perciformes/Scorpaenoidei,January,Demersal,Coastal,Cool-water,3.2,Fished,-0.60812655,-6.1213971,2.0529109,0.714357
-Sebastes levis,Perciformes/Scorpaenoidei,January,Demersal,Coastal,Cool-water,3.5,Fished,-0.33232766,-4.5531589,2.2454222,0.9723107
-Sebastes paucispinis,Perciformes/Scorpaenoidei,January,Demersal,Coastal,Cool-water,3.51,Fished,-0.49854988,-3.2973785,1.836077,0.4693739
-Sphyraena argentea,Carangaria/misc,July,Epipelagic,Coastal,Warm-water,4.5,Fished,0.71299666,3.7963588,7.1733616,0.4052168
-Stenobrachius leucopsarus,Myctophiformes,April,Mesopelagic,Oceanic,Cool-water,3.61,Unfished,-0.39888132,-2.5977088,3.0032634,0.462174
-Stomias atriventer,Stomiiformes,January,Mesopelagic,Oceanic,Warm-water,3.98,Unfished,-0.62969594,-5.1791473,1.7965305,0.5836952
-Symbolophorus californiensis,Myctophiformes,April,Mesopelagic,Oceanic,Cool-water,3.1,Unfished,-0.3635882,-2.3722736,5.1649895,0.4630349
-Symphurus atricaudus,Pleuronectiformes,July,Demersal,Coastal,Warm-water,3.3,Unfished,-0.47671972,-3.7358396,8.5059372,0.5963933
-Tactostoma macropus,Stomiiformes,July,Mesopelagic,Oceanic,Cool-water,4.2,Unfished,-0.58783106,-6.4564911,6.6441074,0.779476
-Tarletonbeania crenularis,Myctophiformes,April,Mesopelagic,Oceanic,Cool-water,3.13,Unfished,-0.54550298,-4.0183969,4.7559016,0.5227746
-Tetragonurus cuvieri,Scombriformes,October,Epipelagic,Coastal-Oceanic,Cool-water,3.78,Unfished,0.76243805,10.2215027,10.0288133,0.9514127
-Trachurus symmetricus,Carangiformes,April,Epipelagic,Coastal-Oceanic,Wide distribution,3.82,Fished,0.06920311,0.3783476,4.5582704,0.3879932
-Triphoturus mexicanus,Myctophiformes,July,Mesopelagic,Oceanic,Warm-water,3.33,Unfished,-0.3854796,-2.8373794,7.1994911,0.5223658
+﻿scientific_name,order,month_maximum,adult_habitat,cross_shore_distribution,biogeographic_affinity,adult_trophic_level,fishing_status,r,trend_in_phenology,mean_ct,sd_ct,,,,,,,
+Argentina sialis,Argentiniformes,January,Demersal,Coastal,Wide distribution,3.1,Unfished,-0.67676084,-9.8567145,1.1874229,1.0819062,,,,,,,
+Aristostomias scintillans,Stomiiformes,April,Mesopelagic,Oceanic,Cool-water,3.5,Unfished,0.54587677,6.6284403,1.8077371,0.8726045,,,,,,,
+Bathophilus flemingi,Stomiiformes,July,Mesopelagic,Oceanic,Wide distribution,3.5,Unfished,-0.5556051,-8.9127689,5.2843905,0.9479184,,,,,,,
+Bathylagoides wesethi,Argentiniformes,July,Mesopelagic,Oceanic,Cool-water,3.2,Unfished,0.60550941,4.3743708,6.6298918,0.5126883,,,,,,,
+Bathylagus pacificus,Argentiniformes,January,Mesopelagic,Oceanic,Cool-water,3.27,Unfished,-0.73093897,-9.5297987,2.6967994,0.9287399,,,,,,,
+Brosmophycis marginata,Ophidiiformes,April,Demersal,Coastal,Cool-water,,Unfished,-0.53562539,-7.5819121,5.0692838,1.004561,,,,,,,
+Ceratoscopelus townsendi,Myctophiformes,July,Mesopelagic,Oceanic,Wide distribution,3.5,Unfished,-0.53757933,-3.2532267,6.7229513,0.4294677,,,,,,,
+Chauliodus macouni,Stomiiformes,April,Mesopelagic,Oceanic,Cool-water,4.09,Unfished,0.07163385,0.6256906,5.5407434,0.6198693,,,,,,,
+Chromis punctipinnis,Ovalentaria/misc,July,Demersal,Coastal,Warm-water,2.73,Unfished,0.46361963,5.1013938,7.7068947,0.7730016,,,,,,,
+Cololabis saira,Beloniformes,April,Epipelagic,Coastal-Oceanic,Wide distribution,3.71,Unfished,0.19734723,1.9864233,5.8492185,0.714331,,,,,,,
+Diogenichthys atlanticus,Myctophiformes,January,Mesopelagic,Oceanic,Warm-water,3.11,Unfished,-0.40722101,-5.9740516,0.7927773,1.0866217,,,,,,,
+Electrona risso,Myctophiformes,April,Mesopelagic,Oceanic,Wide distribution,3.4,Unfished,-0.14424324,-2.4667954,1.2187728,1.064777,,,,,,,
+Engraulis mordax,Clupeiformes,April,Epipelagic,Coastal-Oceanic,Wide distribution,3.1,Fished,0.20854751,1.8994069,3.8847886,0.6463559,,,,,,,
+Girella nigricans,Centrarchiformes,July,Demersal,Coastal,Cool-water,2,Unfished,0.53965289,8.6547217,6.0726861,0.9045634,,,,,,,
+Glyptocephalus zachirus,Pleuronectiformes,July,Demersal,Coastal,Cool-water,3.41,Fished,0.07986137,0.5544022,5.6104607,0.4926595,,,,,,,
+Hippoglossina stomata,Pleuronectiformes,October,Demersal,Coastal,Cool-water,,Unfished,0.10400724,2.1941527,10.597518,0.857088,,,,,,,
+Hypsypops rubicundus,Ovalentaria/misc,July,Demersal,Coastal,Warm-water,3.16,Unfished,-0.46051492,-4.3122333,7.2655109,0.7140495,,,,,,,
+Icichthys lockingtoni,Scombriformes,April,Epipelagic,Coastal-Oceanic,Wide distribution,3.71,Unfished,-0.9404229,-11.4049992,4.4092555,0.8606584,,,,,,,
+Idiacanthus antrostomus,Stomiiformes,July,Mesopelagic,Oceanic,Wide distribution,3.83,Unfished,0.30820887,2.8763644,7.8373168,0.6623042,,,,,,,
+Lampadena urophaos,Myctophiformes,July,Mesopelagic,Oceanic,Wide distribution,,Unfished,0.01440951,0.1658938,7.8358835,0.817033,,,,,,,
+Leuroglossus stilbius,Argentiniformes,April,Mesopelagic,Coastal-Oceanic,Wide distribution,3.26,Unfished,-0.41397034,-3.8544124,2.3981604,0.6688968,,,,,,,
+Lipolagus ochotensis,Argentiniformes,January,Mesopelagic,Oceanic,Cool-water,3.4,Unfished,-0.37636048,-3.7193473,2.3957948,0.7150252,,,,,,,
+Lyopsetta exilis,Pleuronectiformes,April,Demersal,Coastal,Cool-water,3.5,Unfished,0.07341574,0.530875,3.7363707,0.5131707,,,,,,,
+Medialuna californiensis,Centrarchiformes,July,Demersal,Coastal,Warm-water,2.67,Fished,-0.35544589,-5.9739554,6.4113668,1.0329465,,,,,,,
+Merluccius productus,Gadiformes,February,Epipelagic,Coastal-Oceanic,Wide distribution,3.98,Fished,-0.57121864,-6.1972647,2.080075,0.7702657,,,,,,,
+Microstomus pacificus,Pleuronectiformes,April,Demersal,Coastal,Cool-water,3.34,Fished,-0.36883271,-2.1158851,5.352953,0.407119,,,,,,,
+Nansenia candida,Argentiniformes,April,Mesopelagic,Oceanic,Cool-water,,Unfished,-0.85172703,-2.8539278,4.5892551,0.2377942,,,,,,,
+Notolychnus valdiviae,Myctophiformes,April,Mesopelagic,Oceanic,Wide distribution,3.07,Unfished,-0.6783063,-13.0379846,5.7767257,0.9380149,,,,,,,
+Notoscopelus resplendens,Myctophiformes,July,Mesopelagic,Oceanic,Wide distribution,3,Unfished,0.03658465,0.3787822,5.7950085,0.7347665,,,,,,,
+Oxylebius pictus,Perciformes/Cottoidei,April,Demersal,Coastal,Cool-water,3.42,Unfished,-0.27574012,-3.5783444,2.3135485,0.9426316,,,,,,,
+Paralichthys californicus,Pleuronectiformes,April,Demersal,Coastal,Warm-water,4.5,Fished,0.85898874,7.8974651,4.5071126,0.6524677,,,,,,,
+Parophrys vetulus,Pleuronectiformes,April,Demersal,Coastal,Cool-water,3.39,Fished,-0.11885532,-1.2507742,3.0826134,0.7468253,,,,,,,
+Peprilus simillimus,Scombriformes,July,Demersal,Coastal,Cool-water,,Fished,0.43052432,4.7271603,6.4767267,0.7792223,,,,,,,
+Pleuronichthys coenosus,Pleuronectiformes,April,Demersal,Coastal,Cool-water,3.16,Unfished,-0.20701305,-2.1343674,5.8363877,0.7316952,,,,,,,
+Pleuronichthys decurrens,Pleuronectiformes,January,Demersal,Coastal,Cool-water,3.85,Unfished,-0.32378915,-8.346951,1.6807537,1.3234622,,,,,,,
+Pleuronichthys verticalis,Pleuronectiformes,July,Demersal,Coastal,Warm-water,3.1,Unfished,0.83709572,5.7691704,5.449367,0.4890992,,,,,,,
+Protomyctophum crockeri,Myctophiformes,January,Mesopelagic,Oceanic,Cool-water,3.2,Unfished,-0.17096027,-1.2099672,0.7674522,0.5756452,,,,,,,
+Pseudobathylagus milleri,Argentiniformes,January,Mesopelagic,Oceanic,Wide distribution,3.21,Unfished,0.29921484,6.7907058,1.8288786,1.1962738,,,,,,,
+Sardinops sagax,Clupeiformes,April,Epipelagic,Coastal-Oceanic,Warm-water,2.61,Fished,-0.15384906,-2.3767427,4.4902649,1.096342,,,,,,,
+Scomber japonicus,Scombriformes,July,Epipelagic,Coastal-Oceanic,Warm-water,3.42,Fished,-0.65866783,-6.0299664,6.3275073,0.6496915,,,,,,,
+Scorpaenichthys marmoratus,Perciformes/Cottoidei,January,Demersal,Coastal,Cool-water,3.62,Fished,-0.50042877,-6.1814652,1.4282915,0.8467304,,,,,,,
+Sebastes aurora,Perciformes/Scorpaenoidei,April,Demersal,Coastal,Cool-water,3.3,Fished,-0.71743865,-6.6067649,3.7987121,0.6535259,,,,,,,
+Sebastes diploproa,Perciformes/Scorpaenoidei,July,Demersal,Coastal,Cool-water,3.3,Fished,0.14646926,1.0566887,6.7878092,0.5119875,,,,,,,
+Sebastes goodei,Perciformes/Scorpaenoidei,January,Demersal,Coastal,Cool-water,3.46,Fished,-0.20300482,-2.6976836,1.696672,0.9458942,,,,,,,
+Sebastes jordani,Perciformes/Scorpaenoidei,January,Demersal,Coastal,Cool-water,3.2,Fished,-0.60856176,-6.1091398,2.0529109,0.714357,,,,,,,
+Sebastes levis,Perciformes/Scorpaenoidei,January,Demersal,Coastal,Cool-water,3.5,Fished,-0.33096824,-4.5231129,2.2454222,0.9723107,,,,,,,
+Sebastes paucispinis,Perciformes/Scorpaenoidei,January,Demersal,Coastal,Cool-water,3.51,Fished,-0.48739925,-3.2191835,1.836077,0.4693739,,,,,,,
+Sphyraena argentea,Carangaria/misc,July,Epipelagic,Coastal,Warm-water,4.5,Fished,0.71299666,4.4140474,7.1733616,0.4052168,,,,,,,
+Stenobrachius leucopsarus,Myctophiformes,April,Mesopelagic,Oceanic,Cool-water,3.61,Unfished,-0.39888132,-2.5977088,3.0032634,0.462174,,,,,,,
+Stomias atriventer,Stomiiformes,January,Mesopelagic,Oceanic,Warm-water,3.98,Unfished,-0.65332382,-4.9183639,1.7965305,0.5836952,,,,,,,
+Symbolophorus californiensis,Myctophiformes,April,Mesopelagic,Oceanic,Cool-water,3.1,Unfished,-0.3635882,-2.3722736,5.1649895,0.4630349,,,,,,,
+Symphurus atricaudus,Pleuronectiformes,July,Demersal,Coastal,Warm-water,3.3,Unfished,-0.47671972,-4.4613285,8.5059372,0.5963933,,,,,,,
+Tactostoma macropus,Stomiiformes,July,Mesopelagic,Oceanic,Cool-water,4.2,Unfished,-0.58783106,-6.4564911,6.6441074,0.779476,,,,,,,
+Tarletonbeania crenularis,Myctophiformes,April,Mesopelagic,Oceanic,Cool-water,3.13,Unfished,-0.54550298,-4.0183969,4.7559016,0.5227746,,,,,,,
+Tetragonurus cuvieri,Scombriformes,October,Epipelagic,Coastal-Oceanic,Cool-water,3.78,Unfished,0.74958544,10.6656879,10.0288133,0.9514127,,,,,,,
+Trachurus symmetricus,Carangiformes,April,Epipelagic,Coastal-Oceanic,Wide distribution,3.82,Fished,0.06920311,0.3783476,4.5582704,0.3879932,,,,,,,
+Triphoturus mexicanus,Myctophiformes,July,Mesopelagic,Oceanic,Warm-water,3.33,Unfished,-0.3854796,-2.8373794,7.1994911,0.5223658,,,,,,,

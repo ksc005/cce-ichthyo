@@ -16,6 +16,7 @@ library(tidyverse)
 library(reshape2)
 library(readxl)
 library(fastDummies)
+library(here)
 
 # load data
 eco_traits <- read_excel(here("data", "nhl-eco-traits.xlsx"), sheet = 1)
@@ -79,9 +80,7 @@ scores = as.data.frame(fit$scores)
 set.seed(70524)
 fit_kmeans <- kmeans(scores, 3, nstart = 25)
 
-scores$scientific_name = pca_data$scientific_name
-names(scores) <- c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9",
-                   "PC10", "PC11","PC12","SciName")
+
 
 # Save files needed for visualizing the PCA
 eco_traits <- eco_traits %>%
@@ -96,6 +95,10 @@ write.csv(markers, here("data", "nhl-pca-markers.csv"), row.names = F)
 correlations = as.data.frame(cor(scaled_pca.df, fit$scores))
 
 write.csv(correlations, here("data", "nhl-pca-plots.csv"), row.names = T)
+
+scores$scientific_name = pca_data$scientific_name
+names(scores) <- c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9",
+                   "PC10", "PC11","PC12","SciName")
 
 
 # Species Clustering Closely Together ---------------------------------------
@@ -138,7 +141,7 @@ cluster2.table <- spp_cta %>%
 cluster2.group <- cluster2.table %>%
   group_by(Taxa) %>%
   count(group)
-table(cluster2.group$group) # 1 spp shifting earlier, 0 shifting later, 3 no change
+table(cluster2.group$group) # 0 spp shifting earlier, 0 shifting later, 4 no change
 
 cluster2_scores <- scores %>%
   select(PC1, PC2, SciName) %>%
@@ -167,7 +170,7 @@ cluster3.table <- spp_cta %>%
 cluster3.group <- cluster3.table %>%
   group_by(Taxa) %>%
   count(group)
-table(cluster3.group$group) # 6 spp shifting earlier, 2 later, 12 no change
+table(cluster3.group$group) # 5 spp shifting earlier, 1 later, 14 no change
 
 cluster3_scores <- scores %>%
   select(PC1, PC2, SciName) %>%
@@ -216,3 +219,27 @@ cluster3_cta <- cluster3.table %>%
 
 cluster.plots <- rbind(cluster1_cta, cluster2_cta, cluster3_cta)
 write.csv(cluster.plots, here("data", "nhl-cluster-plots.csv"), row.names = F)
+
+# More Data for Figures -------------------------------------------------------
+new.design <- eco_traits %>%
+  select(order, adult_habitat, distribution, biogeographic_affinity, fishing_status, cor_NHL, trend_NHL_d3y)
+
+# get trend in d/y
+new.design$trend_NHL_d3y <- new.design$trend_NHL_d3y / 3
+
+# 3 minimum species per category, so we are dropping: Clupeiformes, Misc, Perciformes/Zoarcoidei, Warm-water
+
+new.design.min3 <- new.design %>%
+  mutate(order = as.character(order),
+         order = ifelse(order %in%
+                          c("Clupeiformes", "Misc", "Perciformes/Zoarcoidei"),
+                        NA,
+                        order),
+         order = as.factor(order)) %>%
+  mutate(biogeographic_affinity = as.character(biogeographic_affinity),
+         biogeographic_affinity = ifelse(biogeographic_affinity == "Warm-water",
+                                         NA,
+                                         biogeographic_affinity),
+         biogeographic_affinity = as.factor(biogeographic_affinity))
+
+write.csv(new.design.min3, "design.spp.nhl.csv")

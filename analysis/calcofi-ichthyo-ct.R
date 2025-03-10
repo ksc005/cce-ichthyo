@@ -19,6 +19,10 @@ library(here)
 # load data
 ichthyoDecadalAvgs <- read.csv(here("data", "calcofi-ichthyo-decadal.csv"))
 
+ichthyoDecadalAvgs <- ichthyoDecadalAvgs %>%
+  select(scientific_name, Decade, New_Month, Avg_Abundance) %>%
+  unique()
+
 # Calculate Species' CT, CTa ----------------------------------------------
 # For each species, take their decadal average monthly abundances and calculate CT and CTa.
 speciesCTa <- ichthyoDecadalAvgs %>%
@@ -95,10 +99,98 @@ print(summary(no_change_regr_3y))
 for(i in unique(correlations$scientific_name)) {
   df <- correlations %>% filter(scientific_name == i)
 
-  spp_regr <- lm(ct_anomaly_days ~ as.numeric(Decade),
+  spp_regr <- lm(ct_anomaly_days ~ as.numeric(as.factor(Decade)),
                  data = df)
 
   correlations$trend_ddec[correlations$scientific_name == i] <- spp_regr$coefficients[2]
 }
 
 write.csv(correlations, here("data", "calcofi-ct-summary.csv"), row.names = F)
+
+# Group Mean, SE, Range of Trend --------------------------------------------
+e <- correlations %>%
+  filter(group == "earlier") %>%
+  select(scientific_name, cor, group, trend_ddec) %>%
+  unique()
+
+mean_se(e$trend_ddec)[1] / 10
+(mean_se(e$trend_ddec)[3] - mean_se(e$trend_ddec)[1]) / 10
+max(e$trend_ddec) / 10
+min(e$trend_ddec) / 10
+
+l <- correlations %>%
+  filter(group == "later") %>%
+  select(scientific_name, cor, group, trend_ddec) %>%
+  unique()
+
+mean_se(l$trend_ddec)[1] / 10
+(mean_se(l$trend_ddec)[3] - mean_se(l$trend_ddec)[1]) / 10
+max(l$trend_ddec) / 10
+min(l$trend_ddec) / 10
+
+n <- correlations %>%
+  filter(group == "no_change") %>%
+  select(scientific_name, cor, group, trend_ddec) %>%
+  unique()
+
+mean_se(n$trend_ddec)[1] / 10
+(mean_se(n$trend_ddec)[3] - mean_se(n$trend_ddec)[1]) / 10
+max(n$trend_ddec) / 10
+min(n$trend_ddec) / 10
+
+# Data for Figures ------------------------------------------------------------
+earlierPanel <- earlierTaxa %>%
+  ddply(.(Decade), summarise,
+        mean_ct = mean(ct),
+        mean_cta_months = mean(ct_anomaly_months),
+        mean_cta_days = mean(ct_anomaly_days),
+        sd_cta_months = sd(ct_anomaly_months),
+        se_cta_months = sd_cta_months/sqrt(25),
+        se_cta_days = se_cta_months * 30.44) %>%
+  arrange(Decade) %>%
+  distinct() %>%
+  mutate(group = "earlier")
+
+noChangePanel <- noChangeTaxa %>%
+  ddply(.(Decade), summarise,
+        mean_ct = mean(ct),
+        mean_cta_months = mean(ct_anomaly_months),
+        mean_cta_days = mean(ct_anomaly_days),
+        sd_cta_months = sd(ct_anomaly_months),
+        se_cta_months = sd_cta_months/sqrt(25),
+        se_cta_days = se_cta_months * 30.44) %>%
+  arrange(Decade) %>%
+  distinct() %>%
+  mutate(group = "no_change")
+
+laterPanel <- laterTaxa %>%
+  ddply(.(Decade), summarise,
+        mean_ct = mean(ct),
+        mean_cta_months = mean(ct_anomaly_months),
+        mean_cta_days = mean(ct_anomaly_days),
+        sd_cta_months = sd(ct_anomaly_months),
+        se_cta_months = sd_cta_months/sqrt(25),
+        se_cta_days = se_cta_months * 30.44) %>%
+  arrange(Decade) %>%
+  distinct() %>%
+  mutate(group = "later")
+
+assemblagePanel <- speciesCTa %>%
+  ddply(.(Decade), dplyr::summarise,
+        Decade = Decade,
+        mean_ct = mean(ct),
+        mean_cta_months = mean(ct_anomaly_months),
+        mean_cta_days = mean(ct_anomaly_days),
+        sd_cta_months = sd(ct_anomaly_months),
+        se_cta_months = sd_cta_months/sqrt(25),
+        se_cta_days = se_cta_months * 30.44) %>%
+  unique() %>%
+  mutate(group = "assemblage")
+
+calcofi.fig1 <- rbind(assemblagePanel,
+                      earlierPanel,
+                      laterPanel,
+                      noChangePanel)
+
+write.csv(calcofi.fig1,
+          here("data", "fig1.calcofi.csv"))

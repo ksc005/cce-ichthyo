@@ -19,7 +19,7 @@ library(FSA)
 library(here)
 
 # load data
-ichthyo3yAvgs <- read.csv(here("data", "nhl-ichthyo-3y.csv"))
+spp_data <- read.csv(here("data", "fall_NHL_shifted.csv"))
 ct_analysis_summary <- read.csv(here("data", "nhl-ct-summary.csv"))
 enso <- read_excel(here("data", "nhl-enso.xlsx"))
 
@@ -31,15 +31,15 @@ enso <- enso %>%
        value.name = "enso") %>%
   mutate(Month = as.numeric(Month))
 
-ichthyo_enso <- left_join(ichthyo3yAvgs, enso, by = c("Old_Year" = "Year",
-                                                "Old_Month" = "Month"))
+ichthyo_enso <- left_join(spp_data, enso, by = c("Year" = "Year",
+                                                "Month" = "Month"))
 
 ichthyo_enso_ct <- ichthyo_enso %>%
-  mutate(numerator = New_Month * Density_Avg_3y,
+  mutate(numerator = New_Month * Density,
          enso = as.factor(enso)) %>%
   ddply(.(enso, Taxa), reframe,
         numerator = sum(numerator),
-        denominator = sum(Density_Avg_3y),
+        denominator = sum(Density),
         ct = numerator / denominator) %>%
   na.omit() %>%
   ddply(.(Taxa), reframe,
@@ -60,26 +60,22 @@ ichthyo_enso_ct$group <- ct_analysis_summary$group[match(ichthyo_enso_ct$Taxa, c
 enso_earlier_taxa <- ichthyo_enso_ct %>%
   filter(group == "earlier")
 
-shapiro.test(enso_earlier_taxa$ct_anomaly_days) # p = 0.06089, violated
+shapiro.test(enso_earlier_taxa$ct_anomaly_days) # p = 0.5647, violated
 
 kruskal.test(ct_anomaly_days ~ enso,
-             data = enso_earlier_taxa) # p = 0.0316, significant difference
-
-dunnTest(ct_anomaly_days ~ enso,
-         data = enso_earlier_taxa,
-         method = "holm") # significant difference for El Niño vs La Nina
+             data = enso_earlier_taxa) # p = 0.5326, no significant difference
 
 
 # no long-term linear change group
 enso_no_change_taxa <- ichthyo_enso_ct %>%
   filter(group == "no_change")
 
-shapiro.test(enso_no_change_taxa$ct_anomaly_days) # p = 0.004386, normal
+shapiro.test(enso_no_change_taxa$ct_anomaly_days) # p = 0.008119, normal
 
-bartlett.test(ct_anomaly_days ~ enso, data = enso_no_change_taxa) # p = 0.2899, violated
+bartlett.test(ct_anomaly_days ~ enso, data = enso_no_change_taxa) # p = 0.1898, violated
 
 kruskal.test(ct_anomaly_days ~ enso,
-             data = enso_no_change_taxa) # p = 0.02478, significant difference
+             data = enso_no_change_taxa) # p = 0.004192, significant difference
 
 dunnTest(ct_anomaly_days ~ enso,
          data = enso_no_change_taxa,
@@ -90,7 +86,15 @@ dunnTest(ct_anomaly_days ~ enso,
 enso_later_taxa <- ichthyo_enso_ct %>%
   filter(group == "later")
 
-shapiro.test(enso_later_taxa$ct_anomaly_days) # p = 0.3736, violated
+shapiro.test(enso_later_taxa$ct_anomaly_days) # p = 0.2102, violated
 
 kruskal.test(ct_anomaly_days ~ enso,
-             data = enso_later_taxa) # p = 0.2765, no significant difference
+             data = enso_later_taxa) # p = 0.3679, no significant difference
+
+
+# Data for Figures ------------------------------------------------------------
+climate.nhl <- ichthyo_enso_ct %>%
+  mutate(mode = "enso") %>%
+  rename(phase = enso)
+
+write.csv(climate.nhl, here("data", "climate.nhl.csv"))
