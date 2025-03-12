@@ -1,0 +1,357 @@
+This file describes files and their variables stored in the data folder, organized in sections for files storing PRIMARY RESULTS, ICHTHYOPLANKTON DATA, ENVIRONMENTAL VARIABLE DATA, CLIMATE DATA. Supplementary files used only to e.g. generate or label figures are not listed.
+
+Format
+
+File name: exact file name
+Summary: description of file contents
+Type: type of data
+Note: any additional information on data source or management
+Variables:
+variable_name_in_file (description of variable) [units]
+
+
+### PRIMARY RESULTS
+
+File name: calcofi-ct-summary.csv
+Summary: decadal central tendency of CalCOFI ichthyoplankton
+Type: primary data (results of analysis)
+Variables:
+scientific_name (scientific name) [Genus species]
+Decade (midpoint of the decade) [year]
+ct (central tendency) [month]
+mean_ct_months (mean central tendency for this species) [month]
+sd_ct_months (standard deviation in central tendency for this species) [month]
+ct_anomaly_months (central tendency anomaly for this decade) [month]
+ct_anomaly_days (central tendency anomaly for this decade) [days]
+cor (correlation coefficient for central tendency anomaly over time) []
+group (phenology change group) []
+trend_ddec (species estimated trend in phenology) [days per decade]
+
+File name: nhl-ct-summary.csv
+Summary: 3-y period central tendency of NH Line ichthyoplankton
+Type: primary data (results of analysis)
+Variables:
+scientific_name (scientific name) [Genus.species]
+Period_3y (3-year period, where 1 = 1997-1999, 2 = 2000-2002, ...) []
+ct (central tendency) [month]
+mean_ct_months (mean central tendency for this species) [month]
+sd_ct_months (standard deviation in central tendency for this species) [month]
+ct_anomaly_months (central tendency anomaly for this period) [month]
+ct_anomaly_days (central tendency anomaly for this period) [days]
+cor (correlation coefficient for central tendency anomaly over time) []
+group (phenology change group) []
+trend_d3y (species estimated trend in phenology) [days per 3 years]
+trend_dy (species estimated trend in phenology) [days per year]
+
+File name: calcofi-bcui-ct.csv
+Summary: decadal central tendency of Bakun upwelling index values at 33N 119W
+Type: primary data (results of analysis)
+Variables:
+decade (midpoint of the decade) [year]
+ct (central tendency) [month]
+mean_ct_months (mean central tendency across all decades) [month]
+ct_anomaly_months (central tendency anomaly in this decade) [month]
+ct_anomaly_days (central tendency anomaly in this decade) [days]
+se_ct_months (standard error on central tendency) [month]
+lower_ct (lower bound of 95% confidence interval on central tendency) [month]
+upper_ct (upper bound of 95% confidence interval on central tendency) [month]
+cta_se (standard error on central tendency anomaly) [days]
+
+File name: calcofi-temp-ct.csv
+Summary: decadal central tendency of upper 100-m temperature in the CalCOFI grid
+Type: primary data (results of analysis)
+Variables:
+decade (midpoint of the decade) [year]
+ct (central tendency) [month]
+mean_ct_months (mean central tendency across all decades) [month]
+sd_ct_months (standard deviation in central tendencies) [month]
+ct_anomaly_months (central tendency anomaly in this decade) [month]
+ct_anomaly_days (central tendency anomaly in this decade) [days]
+se_ct_months (standard error on central tendency) [month]
+lower_ct (lower bound of 95% confidence interval on central tendency) [month]
+upper_ct (upper bound of 95% confidence interval on central tendency) [month]
+se_cta_days (standard error on central tendency anomaly) [days]
+
+File name: calcofi-zdv-ct.csv
+Summary: decadal central tendency of zooplankton displacement volume in the CalCOFI grid
+Type: primary data (results of analysis)
+Variables:
+decade (midpoint of the decade) [year]
+ct (central tendency) [month]
+mean_ct_months (mean central tendency across all decades) [month]
+sd_ct_months (standard deviation in central tendencies) [month]
+ct_anomaly_months (central tendency anomaly in this decade) [month]
+ct_anomaly_days (central tendency anomaly in this decade) [days]
+se_ct_months (standard error on central tendency) [month]
+lower_ct (lower bound of 95% confidence interval on central tendency) [month]
+upper_ct (upper bound of 95% confidence interval on central tendency) [month]
+cta_se (standard error on central tendency anomaly) [days]
+
+File name: nhl-bcui-ct.csv
+Summary: 3-year period central tendency of Bakun upwelling index values at 45N 125W
+Type: primary data (results of analysis)
+Variables:
+Period_3y (3-year period, where 1 = 1997-1999, 2 = 2000-2002, ...) []
+ct (central tendency) [month]
+ct_anomaly_months (central tendency anomaly in this decade) [month]
+ct_anomaly_days (central tendency anomaly in this decade) [days]
+se_ct_months (standard error on central tendency) [month]
+lower_ct (lower bound of 95% confidence interval on central tendency) [month]
+upper_ct (upper bound of 95% confidence interval on central tendency) [month]
+se_cta_days (standard error on central tendency anomaly) [days]
+Year (year that begins this 3-y period) [year]
+
+File name: nhl-temp-ct.csv
+Summary: 3-year period central tendency of upper 100-m temperature at NH Line
+Type: primary data (results of analysis)
+Variables:
+Period_3y (3-year period, where 1 = 1997-1999, 2 = 2000-2002, ...) []
+ct (central tendency) [month]
+mean_ct_months (mean central tendency across all decades) [month]
+sd_ct_months (standard deviation in central tendencies) [month]
+ct_anomaly_months (central tendency anomaly in this decade) [month]
+ct_anomaly_days (central tendency anomaly in this decade) [days]
+se_ct_months (standard error on central tendency) [month]
+lower_ct (lower bound of 95% confidence interval on central tendency) [month]
+upper_ct (upper bound of 95% confidence interval on central tendency) [month]
+se_cta_days (standard error on central tendency anomaly) [days]
+Year (year that begins this 3-y period) [year]
+
+File name: nhl-copepod-ct.csv
+Summary: 3-year period central tendency of copepod assemblage biomasses at NH Line
+Type: primary data (results of analysis)
+Variables:
+Period_3y (3-year period, where 1 = 1997-1999, 2 = 2000-2002, ...) []
+Assemblage (northern or southern copepod assemblage) []
+ct (central tendency) [month]
+mean_ct_months (mean central tendency across all decades) [month]
+sd_ct_months (standard deviation in central tendencies) [month]
+ct_anomaly_months (central tendency anomaly in this decade) [month]
+ct_anomaly_days (central tendency anomaly in this decade) [days]
+se_ct_months (standard error on central tendency) [month]
+lower_ct (lower bound of 95% confidence interval on central tendency) [month]
+upper_ct (upper bound of 95% confidence interval on central tendency) [month]
+se_cta_days (standard error on central tendency anomaly) [days]
+LabelYear (year that begins this 3-y period) [year]
+
+File name: climate.calcofi.csv
+Summary: decadal central tendency of CalCOFI ichthyoplankton, grouped by ENSO phase
+Type: primary data (results of analysis)
+Variables:
+scientific_name (scientific name) [Genus species]
+phase (phase of climate mode) []
+ct (central tendency) [month]
+mean_ct_months (mean central tendency across all decades) [month]
+sd_ct_months (standard deviation in central tendencies) [month]
+ct_anomaly_months (central tendency anomaly in this decade) [month]
+ct_anomaly_days (central tendency anomaly in this decade) [days]
+group (phenology change group) []
+mode (name of climate mode) []
+
+File name: climate.nhl.csv
+Summary: 3-year averaged central tendency of NH Line ichthyoplankton, grouped by ENSO phase
+Type: primary data (results of analysis)
+Variables:
+Taxa (scientific name) [Genus.species]
+phase (phase of climate mode) []
+ct (central tendency) [month]
+mean_ct_months (mean central tendency across all decades) [month]
+sd_ct_months (standard deviation in central tendencies) [month]
+ct_anomaly_months (central tendency anomaly in this decade) [month]
+ct_anomaly_days (central tendency anomaly in this decade) [days]
+group (phenology change group) []
+mode (name of climate mode) []
+
+
+
+### ICHTHYOPLANKTON DATA
+
+File name: calcofi-ichthyo-decadal.csv
+Summary: decadal average abundance of CalCOFI ichthyoplankton
+Type: primary (reshaped/processed) data
+Note: Additional and full CalCOFI ichthyoplankton data are publicly available for download at calcofi.org/data/
+Variables:
+scientific_name (scientific name) [Genus species]
+Decade (midpoint of the decade) [year]
+New_Month (month of the year, after year-shifting if necessary) [month]
+Avg_Abundance (abundance of this species in this decade) [# per m^2]
+Old_Year (actual year in which this species was observed) [year]
+New_Year (corrected year, after year-shifting if necessary) [year]
+Old_Month (actual month of the year) [month]
+
+File name: nhl-ichthyo_3y.csv
+Summary: 3-year averaged abundance of NH Line ichthyoplankton
+Type: primary (reshaped/processed) data
+Note: Additional and full NH Line ichthyoplankton data are available on request from Toby Auth, toby.auth@noaa.gov
+Variables:
+New_Month (month of the year, after year-shifting if necessary) [month]
+Taxa (scientific name) [Genus.species]
+Period_3y (3-year period, where 1 = 1997-1999, 2 = 2000-2002, ...) []
+Density_Avg_3y (density of this species in this period) [# per m^3]
+Old_Year (actual year in which this species was observed) [year]
+Old_Month (actual month of the year) [month]
+New_Year (corrected year, after year-shifting if necessary) [year]
+
+File name: CalCOFI_by_month_and_spp.csv
+Summary: Average abundance per month per year of CalCOFI ichthyoplankton
+Type: primary (reshaped/processed) data
+Note: Additional and full CalCOFI ichthyoplankton data are publicly available for download at calcofi.org/data/
+Variables:
+year (year) [year]
+month (month of the year) [month]
+scientific_name (scientific name) [Genus species]
+abundance (average abundance of this species) [# per m^2]
+
+File name: NHL_by_month_and_spp.csv
+Summary: Average abundance per month per year of NH Line ichthyoplankton
+Type: primary (reshaped/processed) data
+Note: Additional and full NH Line ichthyoplankton data are available on request from Toby Auth, toby.auth@noaa.gov
+Variables:
+Year (year) [year]
+Month (month of the year) [month]
+Taxa (scientific name) [Genus species]
+Density (average abundance of this species) [# per m^3]
+ID (ID factor for each species) []
+
+File name: calcofi-seasons.csv
+Summary: abundance of CalCOFI ichthyoplankton by seasons
+Type: primary (reshaped/processed) data
+Variables:
+scientific_name (scientific name) [Genus species]
+fall_winter (abundance of species in fall and winter months) [# per m^2]
+spring_summer (abundance of species in spring and summer months) [# per m^2]
+season (which of fall_winter and spring_summer is greater) []
+
+File name: nhl-seasons.csv
+Summary: abundance of NH Line ichthyoplankton by seasons
+Type: primary (reshaped/processed) data
+Variables:
+Taxa (scientific name) [Genus.species]
+fall_winter (abundance of species in fall and winter months) [# per m^3]
+spring_summer (abundance of species in spring and summer months) [# per m^3]
+season (which of fall_winter and spring_summer is greater) []
+
+
+
+### ENVIRONMENTAL VARIABLE DATA
+
+File name: nhl-temp.csv
+Summary: Upper 100m temperature at NH Line stations
+Type: primary data
+Variables:
+Year (year of observation) [year]
+Month (month of the year) [month]
+Transect (name of transect line) []
+Station (station number) []
+Upper100mTemp (average upper 100-meter temperature) [degC]
+
+File name: nhl-temp-3y.csv
+Summary: 3-year averaged upper 100m temperature at NH Line stations
+Type: primary (reshaped/processed) data
+Variables:
+Period_3y (3-year period, where 1 = 1997-1999, 2 = 2000-2002, ...) []
+Month (month of the year) [month]
+avg_t (average upper 100-meter temperature) [degC]
+
+File name: nhl-copepods.csv
+Summary: copepod biomass and biomass anomalies at NH Line
+Type: primary data
+Variables:
+Year (year of observation) [year]
+Month (month of the year) [month]
+Station (station number) []
+SouthernBiomassAnomaly (biomass anomaly of southern copepod assemblage) []
+NorthernBiomassAnomaly (biomass anomaly of northern copepod assemblage) []
+SouthernLog10Biomass (mg/m3) (log10 biomass of southern copepod assemblage) [mg per m^3]
+NorthernLog10Biomass (mg/m3) (log10 biomass of northern copepod assemblage) [mg per m^3]
+
+File name: nhl-copepods-3y.csv
+Summary: 3-year averaged copepod biomass at NH Line stations
+Type: primary (reshaped/processed) data
+Variables:
+Period_3y (3-year period, where 1 = 1997-1999, 2 = 2000-2002, ...) []
+Month (month of the year) [month]
+Assemblage (northern or southern copepod assemblage) []
+avg_Cope (average log10 copepod biomass) [mg per m^3]
+
+File name: nhl-bcui.csv
+Summary: Bakun upwelling index values at 45N 125W
+Type: primary (reshaped/processed) data
+Note: Full Bakun index available for download at https://oceanview.pfeg.noaa.gov/products/upwelling/dnld
+Variables:
+POSITION (point location) [latitude longitude]
+YEAR (year) [year]
+MONTH (month of the year) [month]
+BCUI (Bakun upwelling index value) [m^3 per second per 100-m coastline]
+pos_bcui (positive-only BCUI, where negative values were coerced to 0) [m^3 per second per 100-m coastline]
+
+File name: nhl-copepods-3y.csv
+Summary: 3-year averaged Bakun upwelling index values at 45N 125W
+Type: primary (reshaped/processed) data
+Variables:
+Period_3y (3-year period, where 1 = 1997-1999, 2 = 2000-2002, ...) []
+Month (month of the year) [month]
+Avg_Cope (average positive-only BCUI) [m^3 per second per 100-m coastline]
+
+File name: calcofi-bcui.csv
+Summary: Bakun upwelling index values at 33N 119W
+Type: secondary data
+Note: Full Bakun index available for download at https://oceanview.pfeg.noaa.gov/products/upwelling/dnld
+Variables:
+POSITION (point location) [latitude longitude]
+YEAR (year) [year]
+Jan (Bakun upwelling index value in January) [m^3 per second per 100-m coastline]
+Feb (Bakun upwelling index value in February) [m^3 per second per 100-m coastline]
+Mar (Bakun upwelling index value in March) [m^3 per second per 100-m coastline]
+Apr (Bakun upwelling index value in April) [m^3 per second per 100-m coastline]
+May (Bakun upwelling index value in May) [m^3 per second per 100-m coastline]
+Jun (Bakun upwelling index value in June) [m^3 per second per 100-m coastline]
+Jul (Bakun upwelling index value in July) [m^3 per second per 100-m coastline]
+Aug (Bakun upwelling index value in August) [m^3 per second per 100-m coastline]
+Sep (Bakun upwelling index value in September) [m^3 per second per 100-m coastline]
+Oct (Bakun upwelling index value in October) [m^3 per second per 100-m coastline]
+Nov (Bakun upwelling index value in November) [m^3 per second per 100-m coastline]
+Dec (Bakun upwelling index value in December) [m^3 per second per 100-m coastline]
+
+
+
+### CLIMATE DATA
+
+File name: calcofi-enso.csv
+Summary: ENSO phases characterized by the Oceanic Niño Index v5 for each month from 1950-mid2022
+Type: primary (reshaped/processed) data
+Note: Full ONI available at https://origin.cpc.ncep.noaa.gov/products/analysis_monitoring/ensostuff/ONI_v5.php
+Variables:
+Year (year) [year]
+Jan (ENSO phase in January) []
+Feb (ENSO phase in February) []
+Mar (ENSO phase in March) []
+Apr (ENSO phase in April) []
+May (ENSO phase in May) []
+Jun (ENSO phase in June) []
+Jul (ENSO phase in July) []
+Aug (ENSO phase in August) []
+Sep (ENSO phase in September) []
+Oct (ENSO phase in October) []
+Nov (ENSO phase in November) []
+Dec (ENSO phase in December) []
+
+File name: nhl-enso.xlsx
+Summary: ENSO phases characterized by the Oceanic Niño Index v5 for each month from 1996-2023
+Type: primary (reshaped/processed) data
+Note: Full ONI available at https://origin.cpc.ncep.noaa.gov/products/analysis_monitoring/ensostuff/ONI_v5.php
+Variables:
+Year (year) [year]
+Jan (ENSO phase in January) []
+Feb (ENSO phase in February) []
+Mar (ENSO phase in March) []
+Apr (ENSO phase in April) []
+May (ENSO phase in May) []
+Jun (ENSO phase in June) []
+Jul (ENSO phase in July) []
+Aug (ENSO phase in August) []
+Sep (ENSO phase in September) []
+Oct (ENSO phase in October) []
+Nov (ENSO phase in November) []
+Dec (ENSO phase in December) []
+
